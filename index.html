@@ -1,0 +1,198 @@
+<html>
+    <head>
+       <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://ece.ubc.ca/~kbajaj/cpen400a/jquery.js" type="text/javascript"></script>
+        <script src="http://ece.ubc.ca/~gpli/CPEN400A/hw2/test.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+        <script src="js/a2.js" type="text/javascript" ></script>
+        <link rel="stylesheet" href="css/a1.css">
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="row" id="header">
+                <div class="col-md-3">
+                    <div id="logo">
+                        <img src="images/ubc_book_logo.jpg">
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="welcomeBanner">
+                        <button type="button" id="showCartButton" onclick="showCart()">Show Cart</button>
+                        <img src="images/wel_banner.jpg">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" id ="mainContent">
+                <div class="col-md-3 text-center" id="navigationMenu">
+                    <div class="nav-bar-button">All Items</div>
+                    <div class="nav-bar-button">Books</div>
+                    <div class="nav-bar-button">Clothing</div>
+                    <div class="nav-bar-button">Tech</div>
+                    <div class="nav-bar-button">Gifts</div>
+                    <div class="nav-bar-button">Stationary</div>
+                    <div class="nav-bar-button">Supplies</div>
+                </div>
+                
+                <div class="col-md-9" id="productList">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="Box1" class="product-container text-center">
+                                <img src="images/Box1_$10.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$5.99</h5>
+                                </div>
+                                <h5>Clear Plastic Container</h5>
+                            </div>                                          
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Box2" class="product-container text-center">
+                                <img src="images/Box2_$5.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$10.79</h5>
+                                </div>
+                                <h5>Set of plastic containers</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Clothes1" class="product-container text-center">
+                                <img src="images/Clothes1_$20.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$35.99</h5>
+                                </div>
+                                <h5 class="text-center">Burgundy Dress</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="Clothes2" class="product-container text-center">
+                                <img src="images/Clothes2_$30.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$15.79</h5>
+                                </div>
+                                <h5 class="text-center">Shirt</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Jeans" class="product-container text-center">
+                                <img src="images/Jeans_$50.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$52.79</h5>
+                                </div>
+                                <h5 class="text-center">Jeans</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Keyboard" class="product-container text-center">
+                                <img src="images/Keyboard_$20.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$68.99</h5>
+                                </div>
+                                <h5 class="text-center">LED Keyboard</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="KeyboardCombo" class="product-container text-center">
+                                <img src="images/KeyboardCombo_$40.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$112.69</h5>
+                                </div>
+                                <h5 class="text-center">Gaming Keyboard</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Mice" class="product-container text-center">
+                                <img src="images/Mice_$20.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$21.67</h5>
+                                </div>
+                                <h5 class="text-center">Mouse</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Pc1" class="product-container text-center">
+                                <img src="images/PC1_$350.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$259.99</h5>
+                                </div>
+                                <h5 class="text-center">Dell PC Tower</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="Pc2" class="product-container text-center">
+                                <img src="images/PC2_$400.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$289.99</h5>
+                                </div>
+                                <h5 class="text-center">Personal Computer Set</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Pc3" class="product-container text-center">
+                                <img src="images/PC3_$300.png" class="product">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$278.99</h5>
+                                </div>
+                                <h5 class="text-center">Computer Tower</h5>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div id="Tent" class="product-container text-center">
+                                <img src="images/Tent_$100.png" class="product bordered-img">
+                                <div class="blackOverlay"></div>
+                                <img class="shoppingCart" src="images/cart.png">
+                                <div class="caption">
+                                    <h5>$129.69</h5>
+                                </div>
+                                <h5 class="text-center">Tent</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer" class="row">
+                <h6>6200 University Blvd, Vancouver BC V6T 1Z4</h6>
+                <h6>604 822-2665</h6>
+            </div>
+        </div>
+    </body>
+</html>
