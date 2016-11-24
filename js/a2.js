@@ -1,4 +1,4 @@
-var inactiveTime = 30;
+var inactiveTime = 3000000000000;
 var BUY_REMINDER_MESSAGE = "Hey there! Are you still planning to buy something?";
 
 // Cart associative array
@@ -11,13 +11,13 @@ var products = {
     Clothes1: 5,
     Clothes2: 5,
     Jeans: 5,
-    Keyboard: 3,
-    KeyboardCombo: 2,
-    Mice: 4,
-    Pc1: 6,
-    Pc2: 2,
-    Pc3: 4,
-    Tent: 2
+    Keyboard: 5,
+    KeyboardCombo: 5,
+    Mice: 5,
+    Pc1: 5,
+    Pc2: 5,
+    Pc3: 5,
+    Tent: 5
 };
 
 
@@ -76,7 +76,7 @@ function countDown() {
         inactiveTime--;
     } else {
         alert(BUY_REMINDER_MESSAGE);
-        inactiveTime = 30;
+        inactiveTime = 3000000000000;
     }
 }
 
@@ -90,7 +90,7 @@ function countDown() {
 
 function addToCart(productName) {
     clearInterval(cartTimer);
-    inactiveTime = 30;
+    inactiveTime = 3000000000000;
     cartTimer = setInterval(function(){ countDown(); }, 1000);
 
     
@@ -119,7 +119,7 @@ function addToCart(productName) {
 
 function removeFromCart(productName) {
     clearInterval(cartTimer);
-    inactiveTime = 30;
+    inactiveTime = 3000000000000;
     cartTimer = setInterval(function(){ countDown(); }, 1000);
     
     if ((cart.hasOwnProperty(productName)) && (cart[productName] > 0)) {
