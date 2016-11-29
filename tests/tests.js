@@ -4,11 +4,14 @@ QUnit.test( "addToCart", function( assert ) {
 	resetProducts();
 	var product = "Keyboard";
 
-	addToCart(product);
+	if(productExist(product)) {
+		addToCart(product);
+	}
 
 	assert.ok(ifProductInCart(product), "Added "+ product +" Successfully");
 	assert.equal(quantityOfProductInCart(product), 1, product + " quanity is correct");
 	assert.equal(remainingProductQuantity(product), 4, product + "'s stock has decreased accurately.");
+  	assert.equal(inactiveTime, 30, "Inactive time has reset");
 });
 
 // Test: Adding product that is out of stock
@@ -20,7 +23,9 @@ QUnit.test( "addToCart", function( assert ) {
 
 	// Try adding product after it is sold out (when it goes over 5)
 	for(var i=0; i < stockLimit + 1; i++){
-		addToCart(product);
+		if(productExist(product)) {
+			addToCart(product);
+		}
 	}
 
 	assert.equal(quantityOfProductInCart(product), 5, "Only added " + product + " 5 times, since it was sold out after that.");
@@ -36,11 +41,17 @@ QUnit.test( "addToCart", function( assert ) {
 
 	// Add various products to cart
 	for(var i=0; i < stockLimit; i++){
-		addToCart(productArr[0]);
+		if(productExist(productArr[0])) {
+			addToCart(productArr[0]);
+		}
 	}
 	for(i=0; i < stockLimit - 3; i++){
-		addToCart(productArr[1]);
-		addToCart(productArr[2]);
+		if(productExist(productArr[1])) {
+			addToCart(productArr[1]);
+		}
+		if(productExist(productArr[2])) {
+			addToCart(productArr[2]);
+		}
 	}
 	addToCart(productArr[1]);
 
@@ -53,18 +64,36 @@ QUnit.test( "addToCart", function( assert ) {
 	assert.equal(remainingProductQuantity(productArr[2]), 3, productArr[2] + "'s stock has decreased accurately.");
 });
 
+// Test: Adding a non-existing product
+QUnit.test( "addToCart", function( assert ) {
+	resetCart();
+	resetProducts();
+	var product = "CPEN422";
+
+	if(productExist(product)) {
+		addToCart(product);	
+	}
+	
+	assert.ok(!ifProductInCart(product), product +" does not exist, not added");
+	assert.equal(remainingProductQuantity(product), 0, product + " does not exist");
+});
+
 // Test: Removing a product from cart
 QUnit.test( "removeFromCart", function( assert ) {
 	resetCart();
 	resetProducts();
 	var product = "Jeans";
 	
-	addToCart(product);
+	if(productExist(product)) {
+		addToCart(product);
+	}
 	assert.ok(ifProductInCart(product), "Added " + product + " Successfully");
 	removeFromCart(product);
 	
 	assert.equal(ifProductInCart(product), false, "Removed " + product + " Successfully");
 	assert.equal(remainingProductQuantity(product), 5, product + "'s full stock still available");
+	assert.equal(quantityOfProductInCart(product), 0, product + " No Longer In Cart");
+  assert.equal(inactiveTime, 30, "Inactive time has reset");
 });
 
 // Test: Removing a product that is not even in the cart
@@ -87,16 +116,78 @@ QUnit.test( "removeFromCart", function( assert ) {
 
 	assert.equal(ObjSize(cart), 0, "Cart empty originally.");
 
-	addToCart(product);
+	if(productExist(product)) {
+		addToCart(product);
+	}
 	assert.ok(ifProductInCart(product), "Added " + product + " Successfully");
 	removeFromCart(product);
 
 	assert.equal(ObjSize(cart), 0, "Cart empty after some transactions.");
 });
 
+// Test: Retrieving real name of product with product name
+QUnit.test( "productRealName", function( assert ) {
+	var product = "Keyboard";
+	var realName = productRealName(product);
+	assert.equal(realName, "LED Keyboard", "Real product name of " + product + " is " + realName);
+	
+	product = "KeyboardCombo";
+	realName = productRealName(product);
+	assert.equal(realName, "Gaming Keyboard", "Real product name of " + product + " is " + realName);
+});
+
+// Test: Retrieving the real name of invalid/non-existent products
+QUnit.test( "productRealName", function( assert ) {
+	var product = "Macbook";
+	var realName = productRealName(product);
+	assert.equal(realName, null, product + " Does Not Exist");
+
+	product = "IPhone7";
+	realName = productRealName(product);
+	assert.equal(realName, null, product + " Does Not Exist");
+});
+
+/*
+    Function in test: countDown()
+    Case: Tests if the countDown function decrements the inactive timer
+          from 30 to 29 after one second. (Inactive timer is set to 30 seconds)
+*/
+QUnit.test("countDown", function(assert){
+    var done = assert.async();
+    setTimeout(function(){
+        resetTimer();
+        countDown();
+        assert.equal(inactiveTime, 29, "inactive time asserted");
+        done();
+    }, 1000);
+});
+
+/*
+    Function in test: countDown()
+    Case: Tests if the countDown function resets the inactive timer
+          to 30 seconds after the user is inactive for 30 seconds.
+*/
+QUnit.test("countDown", function(assert){
+    var done = assert.async();
+    resetTimer();
+    setTimeout(function(){
+        resetTimer();
+        for(var i=0; i<31; i++){
+            countDown();
+        }
+        assert.equal(inactiveTime, 30, "inactive time asserted");
+        done();
+    }, 1000);
+});
+
 // Returns if 'productName' is in the Cart or not.
 function ifProductInCart(productName){
 	return cart.hasOwnProperty(productName);
+}
+
+// Returns if 'productName' exists or not.
+function productExist(productName) {
+	return products.hasOwnProperty(productName);
 }
 
 // Returns the quanitity of 'productName' if its in the cart, zero otherwise.
@@ -107,7 +198,7 @@ function quantityOfProductInCart(productName){
 		return 0;
 }
 
-// Returns the reamining stock quanity of 'productName' from the products
+// Returns the remaining stock quanity of 'productName' from the products
 function remainingProductQuantity(productName){
 	if(products.hasOwnProperty(productName))
 		return products[productName];
@@ -132,4 +223,9 @@ function ObjSize(obj){
         if (obj.hasOwnProperty(key)) size++;
     }
     return size;
+}
+
+//Resets the timer
+function resetTimer(){
+    inactiveTime = 30;
 }

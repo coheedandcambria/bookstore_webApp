@@ -1,4 +1,4 @@
-var inactiveTime = 3000000000000;
+var inactiveTime = 30;
 var BUY_REMINDER_MESSAGE = "Hey there! Are you still planning to buy something?";
 
 // Cart associative array
@@ -76,7 +76,7 @@ function countDown() {
         inactiveTime--;
     } else {
         alert(BUY_REMINDER_MESSAGE);
-        inactiveTime = 3000000000000;
+        inactiveTime = 30;
     }
 }
 
@@ -90,7 +90,7 @@ function countDown() {
 
 function addToCart(productName) {
     clearInterval(cartTimer);
-    inactiveTime = 3000000000000;
+    inactiveTime = 30;
     cartTimer = setInterval(function(){ countDown(); }, 1000);
 
     
@@ -119,7 +119,7 @@ function addToCart(productName) {
 
 function removeFromCart(productName) {
     clearInterval(cartTimer);
-    inactiveTime = 3000000000000;
+    inactiveTime = 30;
     cartTimer = setInterval(function(){ countDown(); }, 1000);
     
     if ((cart.hasOwnProperty(productName)) && (cart[productName] > 0)) {
