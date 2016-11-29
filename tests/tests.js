@@ -196,7 +196,7 @@ QUnit.test("countDown", function(assert){
     Case: Creating an add to cart button.
 */
 QUnit.test("configureButton", function(assert){
-   var b = configureButton("Add", "addBtn");
+    var b = configureButton("Add", "addBtn");
     assert.ok(b, "The button has been created");
     assert.equal(b.className, "btn addBtn", "Button is created with the correct class");
     assert.equal(b.innerHTML, "Add", "Button is created with the correct inner text");
@@ -207,10 +207,46 @@ QUnit.test("configureButton", function(assert){
     Case: Creating a remove from cart button.
 */
 QUnit.test("configureButton", function(assert){
-   var b = configureButton("Remove", "removeBtn");
+    var b = configureButton("Remove", "removeBtn");
     assert.ok(b, "The button has been created");
     assert.equal(b.className, "btn removeBtn", "Button is created with the correct class");
     assert.equal(b.innerHTML, "Remove", "Button is created with the correct inner text");
+});
+
+/*
+    Function: showCart()
+    Case: Asserts that the showCart function returns the correct
+    alert box when invoked on an empty cart.
+*/
+QUnit.test("showCart", function(assert){
+    resetCart();
+    resetProducts();
+    var sandbox = sinon.sandbox.create();
+    var stub = sandbox.stub(window, "alert");
+    showCart();
+    assert.equal("There is currently nothing in your cart.", stub.getCall(0).args[0], "showCart successful for an empty cart");
+    sandbox.restore();
+});
+
+/*
+    Function: showCart()
+    Case: Asserts that the showCart function returns the correct
+    alert box when invoked on an cart with just one product.
+*/
+QUnit.test("showCart", function(assert){
+    resetCart();
+    resetProducts();
+    var sandbox = sinon.sandbox.create();
+    var stub = sandbox.stub(window, "alert");
+    var product = "Box1";
+
+	if(productExist(product)) {
+		addToCart(product);
+	}
+    
+    showCart();
+    assert.equal("Your cart has 1 Clear Plastic Container", stub.getCall(0).args[0], "showCart successful for a cart with 1 item.");
+    sandbox.restore();
 });
 
 // Returns if 'productName' is in the Cart or not.
