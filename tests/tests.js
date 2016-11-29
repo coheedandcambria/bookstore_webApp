@@ -131,9 +131,20 @@ QUnit.test( "productRealName", function( assert ) {
 	var realName = productRealName(product);
 	assert.equal(realName, "LED Keyboard", "Real product name of " + product + " is " + realName);
 	
-	product = "KeyboardCombo";
-	realName = productRealName(product);
-	assert.equal(realName, "Gaming Keyboard", "Real product name of " + product + " is " + realName);
+//	product = "KeyboardCombo";
+//	realName = productRealName(product);
+	assert.equal(productRealName("KeyboardCombo"), "Gaming Keyboard", "KeyboardCombo case asserted");
+    assert.equal(productRealName("Box1"), "Clear Plastic Container", "Box1 case asserted");
+    assert.equal(productRealName("Box2"), "Set of plastic containers", "Box2 case asserted");
+    assert.equal(productRealName("Clothes1"), "Burgundy Dress", "Clothes1 case asserted");
+    assert.equal(productRealName("Clothes2"), "Shirt", "Clothes2 case asserted");
+    assert.equal(productRealName("Jeans"), "Jeans", "Jeans case asserted");
+    assert.equal(productRealName("Keyboard"), "LED Keyboard", "Keyboard case asserted");
+    assert.equal(productRealName("Mice"), "Mouse", "Mice case asserted");
+    assert.equal(productRealName("Pc1"), "Dell PC Tower", "Pc1 case asserted");
+    assert.equal(productRealName("Pc2"), "Personal Computer Set", "Pc2 case asserted");
+    assert.equal(productRealName("Pc3"), "Computer Tower", "Pc3 case asserted");
+    assert.equal(productRealName("Tent"), "Tent", "Tent case asserted");
 });
 
 // Test: Retrieving the real name of invalid/non-existent products
@@ -178,6 +189,28 @@ QUnit.test("countDown", function(assert){
         assert.equal(inactiveTime, 30, "inactive time asserted");
         done();
     }, 1000);
+});
+
+/*
+    Function in test: configureButton
+    Case: Creating an add to cart button.
+*/
+QUnit.test("configureButton", function(assert){
+   var b = configureButton("Add", "addBtn");
+    assert.ok(b, "The button has been created");
+    assert.equal(b.className, "btn addBtn", "Button is created with the correct class");
+    assert.equal(b.innerHTML, "Add", "Button is created with the correct inner text");
+});
+
+/*
+    Function in test: configureButton
+    Case: Creating a remove from cart button.
+*/
+QUnit.test("configureButton", function(assert){
+   var b = configureButton("Remove", "removeBtn");
+    assert.ok(b, "The button has been created");
+    assert.equal(b.className, "btn removeBtn", "Button is created with the correct class");
+    assert.equal(b.innerHTML, "Remove", "Button is created with the correct inner text");
 });
 
 // Returns if 'productName' is in the Cart or not.
