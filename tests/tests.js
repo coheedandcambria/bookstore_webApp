@@ -1,4 +1,7 @@
-// Test: Adding a single product to cart
+/*
+*    Function in test: addToCart()
+*    Case: Adding a single product to cart
+*/
 QUnit.test( "addToCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -14,7 +17,10 @@ QUnit.test( "addToCart", function( assert ) {
   	assert.equal(inactiveTime, 30, "Inactive time has reset");
 });
 
-// Test: Adding product that is out of stock
+/*
+*    Function in test: addToCart()
+*    Case: Adding product that is out of stock
+*/
 QUnit.test( "addToCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -32,7 +38,10 @@ QUnit.test( "addToCart", function( assert ) {
 	assert.equal(remainingProductQuantity(product), 0, product + "'s stock has decreased accurately.");
 });
 
-// Test: Adding multiple products to cart
+/*
+*    Function in test: addToCart()
+*    Case: Adding multiple products to cart
+*/
 QUnit.test( "addToCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -64,7 +73,10 @@ QUnit.test( "addToCart", function( assert ) {
 	assert.equal(remainingProductQuantity(productArr[2]), 3, productArr[2] + "'s stock has decreased accurately.");
 });
 
-// Test: Adding a non-existing product
+/*
+*    Function in test: addToCart()
+*    Case: Adding a non-existing product
+*/
 QUnit.test( "addToCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -78,7 +90,10 @@ QUnit.test( "addToCart", function( assert ) {
 	assert.equal(remainingProductQuantity(product), 0, product + " does not exist");
 });
 
-// Test: Removing a product from cart
+/*
+*    Function in test: removeFromCart()
+*    Case: Removing a product from cart
+*/
 QUnit.test( "removeFromCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -96,7 +111,10 @@ QUnit.test( "removeFromCart", function( assert ) {
   assert.equal(inactiveTime, 30, "Inactive time has reset");
 });
 
-// Test: Removing a product that is not even in the cart
+/*
+*    Function in test: removeFromCart()
+*    Case: Removing a product that is not even in the cart
+*/
 QUnit.test( "removeFromCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -108,7 +126,10 @@ QUnit.test( "removeFromCart", function( assert ) {
 	assert.equal(remainingProductQuantity(product), 5, product + "'s full stock still available");
 });
 
-// Test: Empty Cart
+/*
+*    Function in test: removeFromCart()
+*    Case: Removing a product from an empty cart
+*/
 QUnit.test( "removeFromCart", function( assert ) {
 	resetCart();
 	resetProducts();
@@ -125,14 +146,15 @@ QUnit.test( "removeFromCart", function( assert ) {
 	assert.equal(ObjSize(cart), 0, "Cart empty after some transactions.");
 });
 
-// Test: Retrieving real name of product with product name
+/*
+*    Function in test: productRealName()
+*    Case: Retrieving real name of product with product name
+*/
 QUnit.test( "productRealName", function( assert ) {
 	var product = "Keyboard";
 	var realName = productRealName(product);
 	assert.equal(realName, "LED Keyboard", "Real product name of " + product + " is " + realName);
 	
-//	product = "KeyboardCombo";
-//	realName = productRealName(product);
 	assert.equal(productRealName("KeyboardCombo"), "Gaming Keyboard", "KeyboardCombo case asserted");
     assert.equal(productRealName("Box1"), "Clear Plastic Container", "Box1 case asserted");
     assert.equal(productRealName("Box2"), "Set of plastic containers", "Box2 case asserted");
@@ -147,7 +169,10 @@ QUnit.test( "productRealName", function( assert ) {
     assert.equal(productRealName("Tent"), "Tent", "Tent case asserted");
 });
 
-// Test: Retrieving the real name of invalid/non-existent products
+/*
+*    Function in test: productRealName()
+*    Case: Retrieving the real name of invalid/non-existent products
+*/
 QUnit.test( "productRealName", function( assert ) {
 	var product = "Macbook";
 	var realName = productRealName(product);
@@ -159,9 +184,9 @@ QUnit.test( "productRealName", function( assert ) {
 });
 
 /*
-    Function in test: countDown()
-    Case: Tests if the countDown function decrements the inactive timer
-          from 30 to 29 after one second. (Inactive timer is set to 30 seconds)
+*   Function in test: countDown()
+*   Case: Tests if the countDown function decrements the inactive timer
+*         from 30 to 29 after one second. (Inactive timer is set to 30 seconds)
 */
 QUnit.test("countDown", function(assert){
     var done = assert.async();
